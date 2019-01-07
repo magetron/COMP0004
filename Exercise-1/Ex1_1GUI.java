@@ -1,5 +1,5 @@
 class Ex1_1GUI {
-	public int sumOfDigits (int n) {
+	private int sumOfDigits (int n) {
 		int s = 0;
 		n = Math.abs(n);
 		while (n > 0) {
