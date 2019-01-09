@@ -1,19 +1,22 @@
 public class Q1_6 {
-	public double a, b;
+	private double a, b;
 
-	public void inputDoubles () {
+	private void inputDoubles () {
 		Input in = new Input();
 		a = in.nextDouble();
 		b = in.nextDouble();
 	}
 
-	public double sqrtOfSum () {
+	private double sqrtOfSum () {
 		return Math.sqrt(a + b);
 	}
 
+	public void controller () {
+		inputDoubles();
+		System.out.println(sqrtOfSum());
+	}
+
 	public static void main (String[] args) {
-		Q1_6 q1_6 = new Q1_6();
-		q1_6.inputDoubles();
-		System.out.println(q1_6.sqrtOfSum());
+		new Q1_6().controller();
 	}
 }
