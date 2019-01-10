@@ -24,15 +24,19 @@ public class Q1_11 {
 		}
 	}
 
-	private void outputFreq () {
-		for (int i = 0; i < 256; i++) if (freq[i] > 0) 
-			System.out.println(Character.toString((char) i) + " " + freq[i]);
+	private void outputFreq (String fileName) {
+		FileOutput fileOut = new FileOutput(fileName);
+		for (int i = 0; i < 256; i++) if (freq[i] > 0) { 
+			fileOut.writeString(Character.toString((char) i) + " " + freq[i]);
+			fileOut.writeEndOfLine();
+		}
+		fileOut.close();
 	}
 
 	public void ioController () {
 		initFreq();
 		analyseFile(getFileName());
-		outputFreq();
+		outputFreq("Q1_11_freqAnalysis.txt");
 	}
 
 	public static void main (String args[]) {
