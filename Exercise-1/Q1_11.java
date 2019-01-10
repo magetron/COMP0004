@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-
-import java.util.Collections;
-
 public class Q1_11 {
 	private int[] freq = new int [256];
 
