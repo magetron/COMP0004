@@ -1,4 +1,4 @@
-public class Ex1_5 {
+public class Q1_10 {
 	private String readString () {
 		Input in = new Input ();
 		String usrString = in.nextLine();
@@ -19,7 +19,7 @@ public class Ex1_5 {
 	}
 
 	public static void main (String[] args) {
-		new Ex1_5().controller();		
+		new Q1_10().controller();		
 	}
 
 }

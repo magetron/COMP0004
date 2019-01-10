@@ -6,8 +6,8 @@ public class Ex1_2 {
 		return fileName;
 	}
 		
-	private void displayFileContent (String filename) {
-		FileInput fileIn = new FileInput(filename);
+	private void displayFileContent (String fileName) {
+		FileInput fileIn = new FileInput(fileName);
 		while (fileIn.hasNextLine()) {
 			String s = fileIn.nextLine();
 			System.out.println(s);
