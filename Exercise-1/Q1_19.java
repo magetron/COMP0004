@@ -13,10 +13,17 @@ public class Q1_19 {
 		while (srcIn.hasNextLine()) {
 			String srcLine = srcIn.nextLine();
 			int lineLen = srcLine.length();
-			for (int i = 0; i < lineLen; i++) 
-				if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i + 1) == '/') ) break;
-					if (srcLine.charAt(i) == '{') match++;
+			boolean commentBlock = false;
+			boolean stringBlock = false;
+			for (int i = 0; i < lineLen; i++)
+				if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i) == '*') ) commentBlock = true;
+				else if ( (srcLine.charAt(i) == '*') && (srcLine.charAt(i) == '/') ) commentBlock = false;
+				else if (!commentBlock) {
+					if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i) == '/') ) continue;
+					else if (srcLine.charAt(i) == '"') while (srcLine.charAt(++i) != '"') continue;
+					else if (srcLine.charAt(i) == '{') match++;
 					else if (srcLine.charAt(i) == '}') match--;
+				}
 		}
 		if (match == 0) return true;
 		else return false;
