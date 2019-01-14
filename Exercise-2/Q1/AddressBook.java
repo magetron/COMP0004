@@ -10,7 +10,7 @@ public class AddressBook {
 
 	public String removePersonByName (String name) {
 		for (var entry : addressBook)
-			if ( entry.getName().equals(name) ) {
+			if ( entry.getName().contains(name) ) {
 				addressBook.remove(entry);
 				return "Remove Successful!";
 			}
@@ -19,7 +19,7 @@ public class AddressBook {
 
 	public String removePersonByPhone (String phone) {
 		for (var entry : addressBook) 
-			if ( entry.getPhone().equals(phone) ) {
+			if ( entry.getPhone().contains(phone) ) {
 				addressBook.remove(entry);
 				return "Remove Successful!";
 			}
@@ -28,7 +28,7 @@ public class AddressBook {
 
 	public String removePersonByEmail (String email) {
 		for (var entry : addressBook) 
-			if ( entry.getEmail().equals(email) ) {
+			if ( entry.getEmail().contains(email) ) {
 				addressBook.remove(entry);
 				return "Remove Successful!";
 			}
@@ -37,7 +37,7 @@ public class AddressBook {
 
 	public AddressBookEntry searchPersonByName (String name) {
 		for (var entry : addressBook) 
-			if ( entry.getName().equals(name) ) return entry;
+			if ( entry.getName().contains(name) ) return entry;
 		return null;
 	}
 

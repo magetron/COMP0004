@@ -26,7 +26,7 @@ public class AddressBookEntry {
 
 	@Override
 	public String toString() {
-		return "\nName : " + getName() + "\nPhone : " + getPhone() + "\nEmail : " + getEmail();
+		return "Name : " + getName() + "\nPhone : " + getPhone() + "\nEmail : " + getEmail();
 
 	}
 }
