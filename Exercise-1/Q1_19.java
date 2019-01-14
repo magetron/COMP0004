@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Q1_19 {
 	private String getSrcFileName () {
 		Input in = new Input();
@@ -10,10 +8,10 @@ public class Q1_19 {
 	private boolean matchSrc (String srcFileName) {
 		FileInput srcIn = new FileInput(srcFileName);
 		int match = 0;
+		boolean commentBlock = false;
 		while (srcIn.hasNextLine()) {
 			String srcLine = srcIn.nextLine();
 			int lineLen = srcLine.length();
-			boolean commentBlock = false;
 			boolean stringBlock = false;
 			for (int i = 0; i < lineLen; i++)
 				if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i) == '*') ) commentBlock = true;

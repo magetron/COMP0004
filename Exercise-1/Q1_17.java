@@ -2,7 +2,7 @@ public class Q1_17 {
 
 	private boolean isPrime (long n) {
 		int j = 2;
-		while (j < (int) Math.sqrt(n)) if (n % j++ == 0) return false;
+		while (j <= (int) Math.sqrt(n)) if (n % j++ == 0) return false;
 		return true;
 	}
 
