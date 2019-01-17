@@ -35,12 +35,17 @@ public class Question {
         return choicesAvailable;
     }
 
+    public ArrayList<Boolean> getAnswers () {
+        return answers;
+    }
+
     public ArrayList<Boolean> isCorrect (ArrayList<Boolean> userAnswers) {
         boolean partiallyCorrect = false;
         boolean allCorrect = true;
-        for (int i = 0; i < choicesAvailable; i++)
-            if ( userAnswers.get(i) == answers.get(i) ) partiallyCorrect = true;
-            else allCorrect = false;
+        for (int i = 0; i < choicesAvailable; i++) {
+            if (userAnswers.get(i) && answers.get(i)) partiallyCorrect = true;
+            if (userAnswers.get(i) != answers.get(i)) allCorrect = false;
+        }
         ArrayList<Boolean> checkResult = new ArrayList<>();
         checkResult.add(partiallyCorrect);
         checkResult.add(allCorrect);
@@ -51,7 +56,7 @@ public class Question {
     @Override
     public String toString () {
         String fullString = description + "\n";
-        for (int i = 0; i < choicesAvailable; i++) fullString += (97 + i) + " . " + choices.get(i) + "\n";
+        for (int i = 0; i < choicesAvailable; i++) fullString += (char)(97 + i) + " . " + choices.get(i) + "\n";
         return fullString;
     }
 
