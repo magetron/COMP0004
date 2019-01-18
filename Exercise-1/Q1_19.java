@@ -14,10 +14,13 @@ public class Q1_19 {
 			int lineLen = srcLine.length();
 			boolean stringBlock = false;
 			for (int i = 0; i < lineLen; i++)
-				if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i) == '*') ) commentBlock = true;
-				else if ( (srcLine.charAt(i) == '*') && (srcLine.charAt(i) == '/') ) commentBlock = false;
+				if ( (i < lineLen - 1) && 
+						(srcLine.charAt(i) == '/') && (srcLine.charAt(i + 1) == '*') ) commentBlock = true;
+				else if ( (i < lineLen - 1) && 
+						(srcLine.charAt(i) == '*') && (srcLine.charAt(i + 1) == '/') ) commentBlock = false;
 				else if (!commentBlock) {
-					if ( (srcLine.charAt(i) == '/') && (srcLine.charAt(i) == '/') ) continue;
+					if ( (i < lineLen - 1) 
+							&& (srcLine.charAt(i) == '/') && (srcLine.charAt(i + 1) == '/') ) break;
 					else if (srcLine.charAt(i) == '"') while (srcLine.charAt(++i) != '"') continue;
 					else if (srcLine.charAt(i) == '{') match++;
 					else if (srcLine.charAt(i) == '}') match--;
@@ -28,7 +31,7 @@ public class Q1_19 {
 	}
 
 	public void ioController () {
-		System.out.println(matchSrc(getSrcFileName()));
+		System.out.println(matchSrc("Q1_19.in"));
 	}
 
 	public static void main (String args[]) {
