@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
 
@@ -88,7 +89,7 @@ public class Main {
 
     private void printInstructions () {
         System.out.println("1. Add New Question");
-        System.out.println("2. Modify a existing Question");
+        System.out.println("2. Modify Mode");
         System.out.println("3. Display all Questions");
         System.out.println("4. Launch Test Mode");
         System.out.println("5. Quit");
@@ -99,6 +100,8 @@ public class Main {
         System.out.println("2. Add Question Choice");
         System.out.println("3. Delete Question Choice");
         System.out.println("4. Modify Question Answers");
+        System.out.println("5. Change Question ID");
+        System.out.println("6. Quit Modify Mode");
     }
 
     private int getInt() {
@@ -113,30 +116,61 @@ public class Main {
         else return "";
     }
 
-    private void modifyIOController () {
+    private int getQuestionID () {
         System.out.println("Question ID ?");
-        int questionID = getInt();
-        printModifyInstructions();
-        int opCode = getInt();
-        switch (opCode) {
-            case 1 : modifyQuestionDescription(questionID, getString()); break;
-            case 2 : addQuestionChoice(questionID, getString()); break;
-            case 3 : deleteQuestionChoices(questionID, getString()); break;
-            case 4 : addQuestionAnswers(questionID, getAnswers());
+        return getInt();
+    }
+
+    private void modifyIOController () {
+        int questionID = getQuestionID();
+        int opCode = -1;
+        while (opCode != 6) {
+            printModifyInstructions();
+            opCode = getInt();
+            switch (opCode) {
+                case 1:
+                    modifyQuestionDescription(questionID, getString());
+                    break;
+                case 2:
+                    addQuestionChoice(questionID, getString());
+                    break;
+                case 3:
+                    deleteQuestionChoices(questionID, getString());
+                    break;
+                case 4:
+                    addQuestionAnswers(questionID, getAnswers());
+                    break;
+                case 5:
+                    questionID = getQuestionID();
+                    break;
+            }
         }
     }
 
-    public void launchTestMode() {
-        for (int i = 0; i < problemSet.size(); i++) {
-            System.out.println(problemSet.get(i).toString());
+    private void launchTestMode() {
+        System.out.println(problemSet.size());
+        ArrayList<Question> tmpProblemSet = new ArrayList<>(problemSet);
+        Random randProblem = new Random();
+        double score = 0;
+        while (tmpProblemSet.size() > 0){
+            Question currentProblem = tmpProblemSet.get(randProblem.nextInt(tmpProblemSet.size()));
+            tmpProblemSet.remove(currentProblem);
+            System.out.println(currentProblem.toString());
             ArrayList<Boolean> userAnswers = getAnswers();
-            ArrayList<Boolean> checkStatus = problemSet.get(i).isCorrect(userAnswers);
+            ArrayList<Boolean> checkStatus = currentProblem.isCorrect(userAnswers);
             System.out.println(userAnswers);
-            System.out.println(problemSet.get(i).getAnswers());
+            System.out.println(currentProblem.getAnswers());
             if (!checkStatus.get(0) && !checkStatus.get(1)) System.out.println("Wrong!");
-            else if (checkStatus.get(0) && !checkStatus.get(1)) System.out.println("Partially Correct !");
-            else if (checkStatus.get(0) && checkStatus.get(1)) System.out.println("Correct !");
+            else if (checkStatus.get(0) && !checkStatus.get(1)) {
+                System.out.println("Partially Correct !");
+                score += 0.5;
+            }
+            else if (checkStatus.get(0) && checkStatus.get(1)) {
+                System.out.println("Correct !");
+                score += 1;
+            }
         }
+        System.out.println("test score = " + score / problemSet.size());
     }
 
     private void ioController () {
