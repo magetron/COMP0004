@@ -130,28 +130,31 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     return in.nextLine();
   }
 
-  public String getCustomerFirstName()
+  private void reportInvalidCustomer(int id)
   {
-    return getWithPrompt("Enter customer first name: ");
-  }
-
-  public String getCustomerLastName()
-  {
-    return getWithPrompt("Enter customer last name: ");
-  }
-
-  public void reportInvalidCustomer(String firstName, String lastName)
-  {
-    System.out.println("Cannot find a customer called: "
-                       + firstName + " " + lastName);
+    System.out.println("Cannot find a customer with id " + id);
   }
 
   private Customer findCustomer()
   {
-    System.out.print("Enter customer last name: ");
-    String lastName = in.nextLine();
-    System.out.print("Enter customer first name: ");
-    String firstName = in.nextLine();
+    Iterator<Customer> customers = model.getCustomerIterator();
+    int customerId = 0;
+    while (customers.hasNext()) {
+      customerId++;
+      Customer customer = customers.next();
+      System.out.println(customerId + " : " + customer.getFirstName() + " " + customer.getLastName());
+    }
+    int customerIdMax = customerId;
+    System.out.print("Enter customer ID: ");
+    int id = in.nextInt();
+    if (id > customerIdMax || id <= 0) reportInvalidCustomer(id);
+    int getCustomerId = 0;
+    Iterator<Customer> customers = model.getCustomerIterator();
+    while (customers.hasNext()) {
+      customerId++;
+      Customer customer = customers.next();
+
+    }
     return model.getCustomer(firstName, lastName);
   }
 
@@ -265,11 +268,6 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
   public void editCustomerDetails()
   {
     Customer customerToDelete = findCustomer();
-    if (customerToDelete == null)
-    {
-      System.out.println("Unable to find Customer");
-      return;
-    }
     ArrayList<Order> savedOrder = customerToDelete.getOrders();
     model.deleteCustomer(customerToDelete.getFirstName(), customerToDelete.getLastName());
     System.out.println("Re-Enter first name:");
