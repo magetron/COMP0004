@@ -3,7 +3,7 @@ import java.util.Iterator;
 public interface SimpleOrderSystemModel
 {
   Customer addCustomer(String firstName, String lastName,
-                   String address, String phone, String email);
+                   String address, String phone, String mobilePhone, String email);
 
   Customer getCustomer(String firstName, String lastName);
 

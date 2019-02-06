@@ -13,10 +13,9 @@ public class DataManager implements SimpleOrderSystemModel
   }
 
   public Customer addCustomer(String firstName, String lastName,
-                          String address, String phone, String email)
+                          String address, String phone, String mobilePhone, String email)
   {
-    Customer customer = new Customer(firstName, lastName,
-                                     address, phone, email);
+    Customer customer = new Customer(firstName, lastName,address, phone, mobilePhone, email);
     customers.add(customer);
     return customer;
   }

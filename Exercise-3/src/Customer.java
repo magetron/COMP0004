@@ -6,15 +6,17 @@ public class Customer
   private String lastName;
   private String address;
   private String phone;
+  private String mobilePhone;
   private String email;
   private ArrayList<Order> orders;
 
-  public Customer(String firstName, String lastName, String address, String phone, String email)
+  public Customer(String firstName, String lastName, String address, String phone, String mobilePhone, String email)
   {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.phone = phone;
+    this.mobilePhone = mobilePhone;
     this.email = email;
     orders = new ArrayList<Order>();
   }
@@ -37,6 +39,11 @@ public class Customer
   public String getPhone()
   {
     return phone;
+  }
+
+  public String getMobilePhone()
+  {
+    return mobilePhone;
   }
 
   public String getEmail()

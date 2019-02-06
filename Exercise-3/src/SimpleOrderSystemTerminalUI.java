@@ -99,9 +99,11 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     String address = in.nextLine();
     System.out.println("Enter phone number:");
     String phone = in.nextLine();
+    System.out.println("Enter mobile phone number:");
+    String mobilePhone = in.nextLine();
     System.out.println("Enter email address:");
     String email = in.nextLine();
-    model.addCustomer(firstName,lastName,address,phone,email);
+    model.addCustomer(firstName,lastName,address,phone,mobilePhone,email);
   }
 
   private void addOrder()
@@ -240,6 +242,7 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
                                   + customer.getFirstName());
       System.out.println("Address: " + customer.getAddress());
       System.out.println("Phone: " + customer.getPhone());
+      System.out.println("Mobile Phone: " + customer.getMobilePhone());
       System.out.println("Email: " + customer.getEmail());
       System.out.println("Orders made: " + customer.getOrders().size());
       System.out.println("Total for all orders: " + customer.getTotalForAllOrders());
@@ -277,9 +280,11 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     String address = in.nextLine();
     System.out.println("Re-Enter phone number:");
     String phone = in.nextLine();
+    System.out.println("Re-Enter mobile phone number:");
+    String mobilePhone = in.nextLine();
     System.out.println("Re-Enter email address:");
     String email = in.nextLine();
-    Customer customerToAdd = model.addCustomer(firstName, lastName, address, phone, email);
+    Customer customerToAdd = model.addCustomer(firstName, lastName, address, phone, mobilePhone, email);
     for (Order order : savedOrder) customerToAdd.addOrder(order);
   }
 }
