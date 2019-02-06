@@ -12,12 +12,13 @@ public class DataManager implements SimpleOrderSystemModel
     products = new ArrayList<Product>();
   }
 
-  public void addCustomer(String firstName, String lastName,
+  public Customer addCustomer(String firstName, String lastName,
                           String address, String phone, String email)
   {
     Customer customer = new Customer(firstName, lastName,
                                      address, phone, email);
     customers.add(customer);
+    return customer;
   }
 
   public Customer getCustomer(String firstName, String lastName)
@@ -31,6 +32,19 @@ public class DataManager implements SimpleOrderSystemModel
       }
     }
     return null;
+  }
+
+  public void deleteCustomer(String firstName, String lastName)
+  {
+    for (Customer customer : customers)
+    {
+      if (customer.getFirstName().equals(firstName)
+              && customer.getLastName().equals(lastName))
+      {
+        customers.remove(customer);
+        return;
+      }
+    }
   }
 
   public Iterator<Customer> getCustomerIterator()

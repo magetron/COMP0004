@@ -2,10 +2,12 @@ import java.util.Iterator;
 
 public interface SimpleOrderSystemModel
 {
-  void addCustomer(String firstName, String lastName,
+  Customer addCustomer(String firstName, String lastName,
                    String address, String phone, String email);
 
   Customer getCustomer(String firstName, String lastName);
+
+  void deleteCustomer(String firstName, String lastName);
 
   Iterator<Customer> getCustomerIterator();
 

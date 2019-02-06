@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
@@ -6,6 +7,8 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
   public static final int ADD_ORDER = 2;
   public static final int ADD_PRODUCT = 3;
   public static final int LIST_CUSTOMERS = 4;
+  public static final int DISPLAY_TOTAL_VALUE = 5;
+  public static final int EDIT_CUSTOMER_DETAILS = 6;
   public static final int QUIT = 10;
   private Input in;
   private SimpleOrderSystemModel model;
@@ -44,6 +47,8 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     System.out.println(ADD_ORDER + ". Add Order");
     System.out.println(ADD_PRODUCT + ". Add Product");
     System.out.println(LIST_CUSTOMERS + ". List Customers");
+    System.out.println(DISPLAY_TOTAL_VALUE + ". Display Total Value");
+    System.out.println(EDIT_CUSTOMER_DETAILS + ". Edit Customer Details");
     System.out.println();
     System.out.println(QUIT + ". Quit");
   }
@@ -56,13 +61,19 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
         addCustomer();
         break;
       case ADD_ORDER:
-         addOrder();
+        addOrder();
         break;
       case ADD_PRODUCT:
-         addProduct();
-         break;
+        addProduct();
+        break;
       case LIST_CUSTOMERS:
         listCustomers();
+        break;
+      case DISPLAY_TOTAL_VALUE:
+        displayTotalValue();
+        break;
+      case EDIT_CUSTOMER_DETAILS:
+        editCustomerDetails();
         break;
       default:
         System.out.println("Invalid option - try again");
@@ -233,5 +244,42 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
       System.out.println("Orders made: " + customer.getOrders().size());
       System.out.println("Total for all orders: " + customer.getTotalForAllOrders());
     }
+  }
+
+  public void displayTotalValue()
+  {
+    System.out.print("Total Value = ");
+    Iterator<Customer> customers = model.getCustomerIterator();
+    int totalValue = 0;
+    while (customers.hasNext())
+    {
+      Customer customer = customers.next();
+      totalValue += customer.getTotalForAllOrders();
+    }
+    System.out.println(totalValue);
+  }
+
+  public void editCustomerDetails()
+  {
+    Customer customerToDelete = findCustomer();
+    if (customerToDelete == null)
+    {
+      System.out.println("Unable to find Customer");
+      return;
+    }
+    ArrayList<Order> savedOrder = customerToDelete.getOrders();
+    model.deleteCustomer(customerToDelete.getFirstName(), customerToDelete.getLastName());
+    System.out.println("Re-Enter first name:");
+    String firstName = in.nextLine();
+    System.out.println("Re-Enter last name:");
+    String lastName = in.nextLine();
+    System.out.println("Re-Enter address:");
+    String address = in.nextLine();
+    System.out.println("Re-Enter phone number:");
+    String phone = in.nextLine();
+    System.out.println("Re-Enter email address:");
+    String email = in.nextLine();
+    Customer customerToAdd = model.addCustomer(firstName, lastName, address, phone, email);
+    for (Order order : savedOrder) customerToAdd.addOrder(order);
   }
 }
