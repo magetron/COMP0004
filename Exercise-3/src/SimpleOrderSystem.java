@@ -24,8 +24,8 @@ public class SimpleOrderSystem
   // the code.
   public static void initialiseExampleData(SimpleOrderSystemModel model)
   {
-    model.addCustomer("First1", "Second1", "Address1", "Phone1", "Email1");
-    model.addCustomer("First2", "Second2", "Address2", "Phone2", "Email2");
+    model.addCustomer("First1", "Second1", "Address1", "Phone1", "Mobile1", "Email1");
+    model.addCustomer("First2", "Second2", "Address2", "Phone2", "Mobile2", "Email2");
 
     model.addProduct(1,"Description1",100);
     model.addProduct(2,"Description2",200);

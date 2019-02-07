@@ -9,6 +9,7 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
   public static final int LIST_CUSTOMERS = 4;
   public static final int DISPLAY_TOTAL_VALUE = 5;
   public static final int EDIT_CUSTOMER_DETAILS = 6;
+  public static final int LIST_ALL_ORDERS = 7;
   public static final int QUIT = 10;
   private Input in;
   private SimpleOrderSystemModel model;
@@ -49,6 +50,7 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     System.out.println(LIST_CUSTOMERS + ". List Customers");
     System.out.println(DISPLAY_TOTAL_VALUE + ". Display Total Value");
     System.out.println(EDIT_CUSTOMER_DETAILS + ". Edit Customer Details");
+    System.out.println(LIST_ALL_ORDERS + ". List All Orders");
     System.out.println();
     System.out.println(QUIT + ". Quit");
   }
@@ -74,6 +76,9 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
         break;
       case EDIT_CUSTOMER_DETAILS:
         editCustomerDetails();
+        break;
+      case LIST_ALL_ORDERS:
+        listAllOrders();
         break;
       default:
         System.out.println("Invalid option - try again");
@@ -130,7 +135,7 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     return in.nextLine();
   }
 
-  private void reportInvalidCustomer(int id)
+  public void reportInvalidCustomer(int id)
   {
     System.out.println("Cannot find a customer with id " + id);
   }
@@ -139,23 +144,27 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
   {
     Iterator<Customer> customers = model.getCustomerIterator();
     int customerId = 0;
+    ArrayList<Customer> cacheCustomers = new ArrayList<>();
     while (customers.hasNext()) {
       customerId++;
       Customer customer = customers.next();
+      cacheCustomers.add(customer);
       System.out.println(customerId + " : " + customer.getFirstName() + " " + customer.getLastName());
     }
     int customerIdMax = customerId;
     System.out.print("Enter customer ID: ");
-    int id = in.nextInt();
-    if (id > customerIdMax || id <= 0) reportInvalidCustomer(id);
-    int getCustomerId = 0;
-    Iterator<Customer> customers = model.getCustomerIterator();
-    while (customers.hasNext()) {
-      customerId++;
-      Customer customer = customers.next();
+    String id = in.nextLine();
+    int idNum = -1;
+    try {
+      idNum = Integer.parseInt(id);
+    } catch (NumberFormatException E) {
 
     }
-    return model.getCustomer(firstName, lastName);
+    if (idNum > customerIdMax + 1  || idNum <= 0) {
+      reportInvalidCustomer(idNum);
+      return null;
+    }
+    else return cacheCustomers.get(idNum - 1);
   }
 
   private void addLineItems(Order order)
@@ -284,5 +293,16 @@ public class SimpleOrderSystemTerminalUI implements SimpleOrderSystemView
     String email = in.nextLine();
     Customer customerToAdd = model.addCustomer(firstName, lastName, address, phone, mobilePhone, email);
     for (Order order : savedOrder) customerToAdd.addOrder(order);
+  }
+
+  public void listAllOrders() {
+    Customer customerToList = findCustomer();
+    ArrayList<Order> ordersToList = customerToList.getOrders();
+    for (Order order : ordersToList) {
+      System.out.print("Line Item Count : ");
+      System.out.println(order.getLineItemCount());
+      System.out.print("Total : ");
+      System.out.println(order.getTotal());
+    }
   }
 }

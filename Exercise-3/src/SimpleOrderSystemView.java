@@ -1,8 +1,6 @@
 public interface SimpleOrderSystemView
 {
-  String getCustomerFirstName();
-  String getCustomerLastName();
-  void reportInvalidCustomer(String firstName, String lastName);
+  void reportInvalidCustomer(int id);
   int getProductCode();
   void reportInvalidProductCode(int productCode);
   int getProductQuantity();
