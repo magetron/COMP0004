@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.ArrayList;
 
 public interface SimpleOrderSystemModel
 {
@@ -11,9 +12,13 @@ public interface SimpleOrderSystemModel
 
   Iterator<Customer> getCustomerIterator();
 
+  Iterator<Product> getProductIterator();
+
   Product getProduct(int code);
 
   void addProduct(int code, String description, int price);
 
   boolean isAvailableProductCode(int code);
+
+  int overallTotal();
 }

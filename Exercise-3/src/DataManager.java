@@ -51,6 +51,11 @@ public class DataManager implements SimpleOrderSystemModel
     return customers.iterator();
   }
 
+  public Iterator<Product> getProductIterator()
+  {
+    return products.iterator();
+  }
+
   public Product getProduct(int code)
   {
     for (Product product : products)
@@ -61,6 +66,11 @@ public class DataManager implements SimpleOrderSystemModel
       }
     }
     return null;
+  }
+
+  public ArrayList<Product> getAllProducts ()
+  {
+    return products;
   }
 
   public void addProduct(int code, String description, int price)
