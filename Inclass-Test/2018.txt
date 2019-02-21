@@ -1,0 +1,80 @@
+1. 
+
+int n 	= 8 + 2 * 4 / 3 + 1;
+	= 8 + 8 / 3 + 1
+	= 8 + 2 + 1
+	= 11
+
+2.
+a) True
+b) True
+c) False
+d) True
+e) True *InterfaceClass Object = new CannotBeInterfaceClass ();
+					| this is a instance of CannotBeInterfaceClass Type
+f) False
+g) True
+h) False Constructors can be private / for delegation / other purposes
+i) False
+j) True
+
+3.
+void triangle (int height) {
+	if (height < 2) return;
+	for (int i = 1; i <= height; i++) {
+		for (int j = 0; j < i; j++)
+			System.out.print('*');
+		System.out.println();
+	}
+}
+
+4. 
+a) 
+
+Arraylist<Integer> arrayOfIntegers = new Arraylist<>();
+
+b)
+
+for (int i = 1; i <= 10; i++) arrayOfIntegers.add(i);
+
+c)
+
+If trying to get index position that does not exsist
+
+Compile time :
+No error is found.
+
+Runtime :
+ArrayIndexOutOFBounds exception is thrown
+Program Terminates
+Stack of exceptions leading to ArrayIndexOutOfBounds Exception is printed
+
+d)
+
+int findMinimum (Arraylist<Integer> a) throws ArrayListIsEmptyException {
+	if (a.isEmpty()) throw new ArrayListIsEmptyException();
+	boolean first = true;
+	int min;
+	for (var aInteger : a) 
+		if (first) {
+			min = aInteger;
+			first = false;
+		} else if (aInteger < min) min = aInteger;
+	return min;
+}
+
+9.
+It seems there is no correct answers?
+
+13. 
+JVM does not manage its own memory?? GC is a part of JVM
+
+15.
+this is never intialised to null since it always references the object its in.
+
+22.
+The method throwing exception is not terminated??
+
+24.
+Dynmaic binding does not allow compiler to do type checking 
+
