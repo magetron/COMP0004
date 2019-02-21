@@ -1,0 +1,51 @@
+1. 		4 × 5 / 2 + 3 × 4
+	= 	20 / 2 + 3 × 4
+	=	10 + 12
+	=	22
+
+	int
+
+2. 
+a) False
+b) False
+c) True
+d) False
+e) True
+f) True
+g) False
+h) True
+i) True
+j) False
+
+3.
+void triangle (int height) {
+	if (height <= 2) return;
+	for (int i = height; i > 0; i--) {
+		for (int j = 0; j < i; j++) System.out.print("+");
+		System.out.println();
+	}
+}
+
+5. b d e 				3
+6. c d e				2 (1 / -1)
+7. a c d				3
+8. a d					2
+9. a b 					2
+10.b c					2
+11.a d					2
+12.d e					2
+13.a c					2
+14.d e					2
+15.a b c e  ?(a)		3 (1 / -1)
+16.c d 					1 (1 / -1)
+17.b d e				3
+18.a b d				3 (why are exceptions being checked by "compilers" at run time /does javac even function at run time?)
+19.b c d e				4
+20.a c d 				3
+21.d 					1
+22.b e 					2
+23.c e 					2
+24.a b c e 				4
+
+48
+
