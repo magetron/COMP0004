@@ -31,7 +31,7 @@ void triangle (int height) {
 7. a c d				3
 8. a d					2
 9. a b 					2
-10.b c					2
+10.b c e				2
 11.a d					2
 12.d e					2
 13.a c					2
@@ -40,7 +40,7 @@ void triangle (int height) {
 16.c d 					1 (1 / -1)
 17.b d e				3
 18.a b d				3 (why are exceptions being checked by "compilers" at run time /does javac even function at run time?)
-19.b c d e				4
+19.a b c d e				4
 20.a c d 				3
 21.d 					1
 22.b e 					2
